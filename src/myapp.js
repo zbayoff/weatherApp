@@ -766,8 +766,6 @@ app.component('weatherData', {
 
         $scope.selectedItem = $scope.countries[75];
 
-        // $scope.country = $scope.countries[2].Code;
-
         $scope.getWeather = function () {
 
             $http({
@@ -777,13 +775,66 @@ app.component('weatherData', {
                 .then(function (response) {
                     // convert temp from Kelvin to Celsius
                     console.log(response.data)
+                
                     $scope.error = "";
-                    $scope.url = $sce.trustAsResourceUrl(`https://www.google.com/maps/embed/v1/place?key=AIzaSyCFztYDd0k_Kz6ZTJFZwbh3h430ZEHpspU&center=${response.data.coord.lat},${response.data.coord.lon}`);
+                    $scope.url = $sce.trustAsResourceUrl(`https://maps.google.com/maps?q=${response.data.coord.lat},${response.data.coord.lon}&hl=es;z=14&output=embed`);
+
+                    `https://maps.google.com/maps?q=${response.data.coord.lat},${response.data.coord.lon}&hl=es;z=14&output=embed`
+                    // https://maps.google.com/maps?q=${response.data.coord.lat},${response.data.coord.lon}&hl=es;z=14&amp;output=embed
+
+                    let weatherDate = new Date(Date(response.data.dt));
+                    weatherDate += "";
+                    
+
+
                     $scope.results = {
-                        'tempCurrent': response.data.main.temp,
-                        'tempMax': response.data.main.temp_max,
-                        'tempMin': response.data.main.temp_min,
-                        'weather': response.data.main.temp_min
+                        'city': $scope.city,
+                        'country': $scope.selectedItem.Name,
+                        'latitude': response.data.coord.lat,
+                        'longitude': response.data.coord.lon,
+                        'datetime': weatherDate.substring(0,25),
+                        'desc': response.data.weather[0].description,
+                        'tempCurrent': convertTemperature((response.data.main.temp - 273), 'F'),
+                        'tempMax': convertTemperature((response.data.main.temp_max - 273), 'F'),
+                        'tempMin': convertTemperature((response.data.main.temp_min - 273), 'F'),
+                        'iconID': response.data.weather[0].icon
+                    }
+
+                    $scope.isDisabledF = true;
+                    $scope.isDisabledC = false;
+
+                    $scope.changeTemp = function (unit) {
+
+                        // anchor tag must be disabled after click
+                        if (unit === 'C') {
+                            $scope.isDisabledC = true;
+                            $scope.isDisabledF = false;
+                        }
+                        if (unit === 'F') {
+                            $scope.isDisabledC = false;
+                            $scope.isDisabledF = true;
+                        }
+
+                        $scope.results.tempCurrent = convertTemperature(($scope.results.tempCurrent), unit);
+                        $scope.results.tempMax = convertTemperature(($scope.results.tempMax), unit);
+                        $scope.results.tempMin = convertTemperature(($scope.results.tempMin), unit);
+
+                    }
+
+                    function convertTemperature (temp, unit) {
+
+                        // console.log(temp);
+
+                        let newTemp = 0;
+                        if (unit === 'F') {
+                            newTemp = Math.round(((9/5)*temp) + 32);
+                        }
+
+                        if (unit === 'C') {
+                            newTemp = Math.round((5/9)*(temp - 32));
+                        }
+
+                        return newTemp;
                     }
                 })
                 .catch(function (response) {
@@ -791,12 +842,9 @@ app.component('weatherData', {
                     $scope.error = "Results not found."
                 });
         }
-
         $scope.getWeather();
-
     }
 })
-
 
 
 // app.controller('weatherController', ['$scope', '$http', function ($scope, $http) {
