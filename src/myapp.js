@@ -10,11 +10,12 @@ app.config(function config($locationProvider, $routeProvider) {
     $locationProvider.html5Mode(true);
 });
 
+// Define component for Weather Data
 app.component('weatherData', {
     templateUrl: '/partials/weather.html',
     controller: function weatherController($scope, $http, $sce) {
-        $scope.city = "Paris";
-
+        
+        // Generate list of countries with ISO 3166 country codes
         $scope.countries = [{
             "Code": "AF",
             "Name": "Afghanistan"
@@ -764,35 +765,33 @@ app.component('weatherData', {
             "Name": "Zimbabwe"
         }];
 
+
+        // Set default city to Paris and Default country to France
+        $scope.city = "Paris";
         $scope.selectedItem = $scope.countries[75];
 
+        // Make call to openweathermap API to GET weather data for specified city/country
         $scope.getWeather = function () {
-
             $http({
                     method: 'GET',
                     url: `http://api.openweathermap.org/data/2.5/weather?q=${$scope.city},${$scope.selectedItem.Code}&appid=9e408b682013db6d717c50482741631e`
                 })
                 .then(function (response) {
-                    // convert temp from Kelvin to Celsius
-                    console.log(response.data)
-                
-                    $scope.error = "";
-                    $scope.url = $sce.trustAsResourceUrl(`https://maps.google.com/maps?q=${response.data.coord.lat},${response.data.coord.lon}&hl=es;z=14&output=embed`);
 
-                    `https://maps.google.com/maps?q=${response.data.coord.lat},${response.data.coord.lon}&hl=es;z=14&output=embed`
-                    // https://maps.google.com/maps?q=${response.data.coord.lat},${response.data.coord.lon}&hl=es;z=14&amp;output=embed
+                    // Valid response
+                    $scope.error = "";
+                    $scope.validEntry = true;
+                    $scope.url = $sce.trustAsResourceUrl(`https://maps.google.com/maps?q=${response.data.coord.lat},${response.data.coord.lon}&hl=es;z=14&output=embed`);
 
                     let weatherDate = new Date(Date(response.data.dt));
                     weatherDate += "";
                     
-
-
                     $scope.results = {
-                        'city': $scope.city,
+                        'city': response.data.name,
                         'country': $scope.selectedItem.Name,
                         'latitude': response.data.coord.lat,
                         'longitude': response.data.coord.lon,
-                        'datetime': weatherDate.substring(0,25),
+                        'datetime': weatherDate.substring(0,21),
                         'desc': response.data.weather[0].description,
                         'tempCurrent': convertTemperature((response.data.main.temp - 273), 'F'),
                         'tempMax': convertTemperature((response.data.main.temp_max - 273), 'F'),
@@ -822,9 +821,6 @@ app.component('weatherData', {
                     }
 
                     function convertTemperature (temp, unit) {
-
-                        // console.log(temp);
-
                         let newTemp = 0;
                         if (unit === 'F') {
                             newTemp = Math.round(((9/5)*temp) + 32);
@@ -833,42 +829,18 @@ app.component('weatherData', {
                         if (unit === 'C') {
                             newTemp = Math.round((5/9)*(temp - 32));
                         }
-
                         return newTemp;
                     }
                 })
                 .catch(function (response) {
+                    // Non valid city/country
                     $scope.results = {};
+                    $scope.validEntry = false;
                     $scope.error = "Results not found."
                 });
         }
+
+        // Call getWeather onload
         $scope.getWeather();
     }
-})
-
-
-// app.controller('weatherController', ['$scope', '$http', function ($scope, $http) {
-
-//     $scope.formData = {};
-
-//     $scope.getWeather = function () {
-
-//         $http({
-//                 method: 'GET',
-//                 url: `http://api.openweathermap.org/data/2.5/weather?q=${$scope.formData.city},${$scope.formData.country}&appid=9e408b682013db6d717c50482741631e`
-//             })
-//             .then(function (response) {
-//                 // convert temp from Kelvin to Celsius
-//                 console.log(response.data)
-//                 $scope.results = {
-//                     'tempCurrent': response.data.main.temp,
-//                     'tempMax': response.data.main.temp_max,
-//                     'tempMin': response.data.main.temp_min,
-//                     'weather': response.data.main.temp_min,
-//                 }
-//             })
-//             .catch(function (response) {
-//                 $scope.results = 'Results not found.';
-//             });
-//     }
-// }]);
+});

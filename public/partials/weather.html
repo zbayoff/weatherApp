@@ -1,7 +1,9 @@
 <div class="form">
+
     <form ng-submit="getWeather()">
+        <p>Enter a city/postal code and country to get the current weather.</p>
         <div>
-            <input type="text" placeholder="Enter a City Name" name="city-name" ng-model="city">
+            <input type="text" placeholder="Enter a City Name or Postal Code" name="city-name" ng-model="city">
         </div>
         <div>
             <select ng-model="selectedItem" ng-options="option.Name for option in countries track by option.Code"></select>
@@ -11,33 +13,35 @@
         </div>
     </form>
 </div>
-<div class="weather-block">
+
+<div class="error">
+    <p>{{error}}</p>
+</div>
+
+
+<div class="weather-container ng-hide" ng-show="validEntry">
     <header>
         <h2 class="location-title capitalize">{{results.city}}, {{results.country}}</h2>
         <p class="lat-long">Lat, Long: {{results.latitude}}&#176;, {{results.longitude}}&#176;</p>
     </header>
     <div class="weather-card-inner">
-        <div>
-            <p>{{error}}</p>
-        </div>
-        <div>
-            <p>{{results.datetime}}</p>
-        </div>
-        <div class="weather-current">
-            <div class="desc">
-                <p class="capitalize">{{results.desc}}</p>
-                <img ng-src="http://openweathermap.org/img/w/{{results.iconID}}.png">
-            </div>
-            <p class="weather-temp-current">{{results.tempCurrent}}<span class="current-temps"><a ng-class="{'active-temp-unit': isDisabledF}" ng-click="isDisabledF || changeTemp('F')">F&#176;</a><span>|</span><a ng-class="{'active-temp-unit': isDisabledC}" ng-click="isDisabledC || changeTemp('C')">C&#176;</a></span>
-            </p>
-        </div>
-        <div class="weather-hi-low">
+        <div class="weather-block">
+            <p class="time">{{results.datetime}}</p>
+            <p class="capitalize">{{results.desc}}</p>
             <p class="weather-temp-lowhigh">High: {{results.tempMax}}&#176;</p>
             <p class="weather-temp-lowhigh">Low: {{results.tempMin}}&#176;</p>
+
+            <div class="weather-current">
+                <div class="desc">
+                    <img ng-src="http://openweathermap.org/img/w/{{results.iconID}}.png">
+
+                </div>
+                <p class="weather-temp-current">{{results.tempCurrent}}<span class="current-temps"><a ng-class="{'active-temp-unit': isDisabledF}" ng-click="isDisabledF || changeTemp('F')">F&#176;</a><span>|</span><a ng-class="{'active-temp-unit': isDisabledC}" ng-click="isDisabledC || changeTemp('C')">C&#176;</a></span></p>
+            </div>
+
+        </div>
+        <div class="location-block">
+            <iframe frameborder="0" style="border:0" ng-src="{{url}}" allowfullscreen></iframe>
         </div>
     </div>
-    
-    
-
-    <!-- <iframe width="600" height="450" frameborder="0" style="border:0" ng-src="{{url}}" allowfullscreen></iframe> -->
 </div>

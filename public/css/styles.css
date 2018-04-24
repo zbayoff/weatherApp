@@ -345,8 +345,25 @@ template {
   padding-right: 1rem;
 }
 
-h1 {
+.app-title {
   text-align: center;
+}
+
+.app-title h1 {
+  margin: 2rem 0 .5rem 0;
+}
+
+.app-title h2 {
+  font-size: 1rem;
+}
+
+.app-title h3 {
+  font-size: 1rem;
+  margin: .5rem 0 1rem 0;
+}
+
+.app-title h3 a {
+  color: black;
 }
 
 .form {
@@ -379,10 +396,12 @@ h1 {
 }
 
 .form input[type="submit"] {
+  cursor: pointer;
   display: block;
-  width: 100%;
+  width: 150px;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
+  font-weight: 600;
   line-height: 1.5;
   color: #495057;
   background-color: #fff;
@@ -393,60 +412,80 @@ h1 {
   background-color: lightblue;
 }
 
-.weather-block {
+.error {
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.weather-container {
   width: 100%;
   max-width: 500px;
   border: 1px solid black;
   border-radius: 0.25rem;
-  margin: 0 auto;
+  margin: 0 auto 2rem auto;
 }
 
-.weather-block header {
+.weather-container header {
   background-color: cornflowerblue;
   width: 100%;
   padding-bottom: 1rem;
   margin: 0;
 }
 
-.weather-block header .location-title {
+.weather-container header .location-title {
   font-size: 2rem;
   padding: 1rem 1rem;
   margin: 0;
 }
 
-.weather-block header .lat-long {
+.weather-container header .lat-long {
   margin: 0;
   padding: 0 1rem;
 }
 
-.weather-block .weather-card-inner {
+.weather-container .weather-card-inner {
   display: block;
   padding: 0 1rem;
+  margin-bottom: 2rem;
 }
 
-.weather-block .weather-current {
+.weather-container .weather-block {
+  position: relative;
+  margin-bottom: 6rem;
+}
+
+.weather-container .weather-block .time {
+  font-size: 1.2rem;
+}
+
+.weather-container .weather-block .weather-current {
+  position: absolute;
+  top: 80px;
+  left: auto;
+  right: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-.weather-block img {
+.weather-container img {
   width: 100px;
   margin: 0;
   padding: 0;
 }
 
-.weather-block .weather-temp-current {
+.weather-container .weather-temp-current {
   font-size: 3rem;
   margin: 0 0 0 1.3rem;
 }
 
-.weather-block .weather-temp-current .current-temps {
+.weather-container .weather-temp-current .current-temps {
   vertical-align: super;
   border-radius: 5px;
 }
 
-.weather-block .weather-temp-current .current-temps a {
+.weather-container .weather-temp-current .current-temps a {
   font-size: 1.2rem;
   cursor: pointer;
   display: inline-block;
@@ -455,17 +494,18 @@ h1 {
   vertical-align: super;
 }
 
-.weather-block .weather-temp-current .current-temps a.active-temp-unit {
+.weather-container .weather-temp-current .current-temps a.active-temp-unit {
   color: cornflowerblue;
   border-radius: 5px;
+  cursor: auto;
 }
 
-.weather-block .weather-temp-current .current-temps span {
+.weather-container .weather-temp-current .current-temps span {
   font-size: 1.2rem;
   vertical-align: super;
 }
 
-.weather-block .weather-hi-low {
+.weather-container .weather-hi-low {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -473,8 +513,22 @@ h1 {
   margin-bottom: 2rem;
 }
 
-.weather-block .weather-hi-low p {
+.weather-container .weather-hi-low p {
   padding: 0;
   margin: .3rem 0;
+}
+
+.weather-container iframe {
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 500px;
+  max-height: 400px;
+  height: 400px;
+  padding-top: 3rem;
+}
+
+.location-block {
+  padding-top: 3rem;
 }
 /*# sourceMappingURL=styles.css.map */
