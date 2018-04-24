@@ -1,6 +1,6 @@
 # Another Weather App!
 
-This application will find the current weather for a specific city and country combination by calling the OpenWeatherMap API. 
+This application will find the current weather for a specific city and country combination by calling the [OpenWeatherMap API.](https://openweathermap.org/api)
 This API is extremely useful as it provides real-time forecast data for any city/region. 
 
 # Directions
