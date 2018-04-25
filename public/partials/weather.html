@@ -17,6 +17,8 @@
 <div class="error">
     <p>{{error}}</p>
 </div>
+Image is
+{{bgImage}}
 
 
 <div class="weather-container ng-hide" ng-show="validEntry">
@@ -33,7 +35,7 @@
 
             <div class="weather-current">
                 <div class="desc">
-                    <img ng-src="http://openweathermap.org/img/w/{{results.iconID}}.png">
+                    <!-- <img ng-src="http://openweathermap.org/img/w/{{results.iconID}}.png"> -->
 
                 </div>
                 <p class="weather-temp-current">{{results.tempCurrent}}<span class="current-temps"><a ng-class="{'active-temp-unit': isDisabledF}" ng-click="isDisabledF || changeTemp('F')">F&#176;</a><span>|</span><a ng-class="{'active-temp-unit': isDisabledC}" ng-click="isDisabledC || changeTemp('C')">C&#176;</a></span></p>

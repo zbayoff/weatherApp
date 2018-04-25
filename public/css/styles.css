@@ -335,6 +335,22 @@ template {
   box-sizing: border-box;
 }
 
+h1, h2, p, a {
+  text-shadow: 0 1px 0 black;
+  color: white;
+}
+
+body {
+  background-size: cover;
+  background-position: right;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    background-position: center;
+  }
+}
+
 .capitalize {
   text-transform: capitalize;
 }
@@ -420,13 +436,12 @@ template {
 .weather-container {
   width: 100%;
   max-width: 500px;
-  border: 1px solid black;
   border-radius: 0.25rem;
   margin: 0 auto 2rem auto;
+  position: relative;
 }
 
 .weather-container header {
-  background-color: cornflowerblue;
   width: 100%;
   padding-bottom: 1rem;
   margin: 0;
@@ -450,7 +465,6 @@ template {
 }
 
 .weather-container .weather-block {
-  position: relative;
   margin-bottom: 6rem;
 }
 
@@ -460,7 +474,7 @@ template {
 
 .weather-container .weather-block .weather-current {
   position: absolute;
-  top: 80px;
+  top: 200px;
   left: auto;
   right: 10%;
   display: flex;

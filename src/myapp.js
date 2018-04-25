@@ -778,6 +778,8 @@ app.component('weatherData', {
                 })
                 .then(function (response) {
 
+                    console.log(response.data);
+
                     // Valid response
                     $scope.error = "";
                     $scope.validEntry = true;
@@ -798,6 +800,10 @@ app.component('weatherData', {
                         'tempMin': convertTemperature((response.data.main.temp_min - 273), 'F'),
                         'iconID': response.data.weather[0].icon
                     }
+
+                    $scope.bgImage = response.data.weather[0].icon;
+
+                    console.log($scope.bgImage);
 
                     $scope.isDisabledF = true;
                     $scope.isDisabledC = false;

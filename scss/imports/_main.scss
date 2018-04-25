@@ -1,7 +1,24 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
+    
     box-sizing: border-box;
 }
+
+h1, h2, p, a {
+    text-shadow: 0 1px 0 black;
+    color: white;
+}
+
+body {
+    // background-image: url('../img/lukasz-lada-275650-unsplash.jpg');
+    background-size: cover;
+    background-position: right;
+    @media screen and (min-width: 768px) {
+        background-position: center;
+    }
+}
+
+
 
 .capitalize {
     text-transform: capitalize;
@@ -84,11 +101,12 @@
 .weather-container {
     width: 100%;
     max-width: 500px;
-    border: 1px solid black;
+    // border: 1px solid black;
     border-radius: 0.25rem;
     margin: 0 auto 2rem auto;
+    position: relative;
     header {
-        background-color: cornflowerblue;
+        // background-color: cornflowerblue;
         width: 100%;
         padding-bottom: 1rem;
     
@@ -111,14 +129,13 @@
     }
 
     .weather-block {
-        position: relative;
         margin-bottom: 6rem;
         .time {
             font-size: 1.2rem;
         }
         .weather-current {
             position: absolute;
-            top: 80px;
+            top: 200px;
             left: auto;
             right: 10%;
             display: flex;

@@ -37040,6 +37040,10 @@ app.component('weatherData', {
                     'iconID': response.data.weather[0].icon
                 };
 
+                $scope.bgImage = response.data.weather[0].icon;
+
+                console.log($scope.bgImage);
+
                 $scope.isDisabledF = true;
                 $scope.isDisabledC = false;
 
