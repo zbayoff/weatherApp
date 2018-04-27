@@ -13,22 +13,43 @@ body {
             text-shadow: none;
             color: black;
         }
+
+        h3 a {
+            border-bottom: 1px solid black;
+        }
+        
     }
 
     &.img-icon-01d {
         background-image: url('../img/01d.jpg');
     }
 
+    &.img-icon-01n {
+        background-image: url('../img/01n.jpg');
+    }
+
     &.img-icon-02d {
         background-image: url('../img/02d.jpg');
+    }
+
+    &.img-icon-02n {
+        background-image: url('../img/02n.jpg');
     }
 
     &.img-icon-03d {
         background-image: url('../img/03d.jpg');
     }
 
+    &.img-icon-03n {
+        background-image: url('../img/03n.jpg');
+    }
+
     &.img-icon-04d {
         background-image: url('../img/04d.jpg');
+    }
+
+    &.img-icon-04n {
+        background-image: url('../img/04n.jpg');
     }
 
     &.img-icon-09d, &.img-icon-09n, &.img-icon-10d, &.img-icon-10n {
@@ -50,6 +71,7 @@ body {
             text-shadow: none;
             color: black;
         }
+        
     }
 
 }

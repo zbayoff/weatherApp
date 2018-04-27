@@ -28,14 +28,9 @@
             <p class="time">{{results.datetime}}</p>
             <p class="weather-temp-current">{{results.tempCurrent}}<span class="current-temps"><a ng-class="{'active-temp-unit': isDisabledF}" ng-click="isDisabledF || changeTemp('F')">F&#176;</a><span>|</span><a ng-class="{'active-temp-unit': isDisabledC}" ng-click="isDisabledC || changeTemp('C')">C&#176;</a></span></p>
             <p class="desc capitalize">{{results.desc}}</p>
-            <p class="weather-temp-lowhigh">High: {{results.tempMax}}&#176;</p>
-            <p class="weather-temp-lowhigh">Low: {{results.tempMin}}&#176;</p>
-            <div class="desc">
-                <!-- <img ng-src="http://openweathermap.org/img/w/{{results.iconID}}.png"> -->
-            </div>
-        </div>
+            <p class="weather-temp-lowhigh">{{results.tempMax}}&#176; / {{results.tempMin}}&#176;</p>
         <div class="showMap-btn">
-            <button ng-click="isMapOpen = !isMapOpen" >Show Map</button>
+            <button ng-click="toggleMap()">Show Map</button>
         </div>
         <div class="location-block fadeMap ng-hide" ng-show="isMapOpen">
             <iframe frameborder="0" style="border:0" ng-src="{{url}}" allowfullscreen></iframe>

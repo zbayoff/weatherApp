@@ -41200,7 +41200,7 @@ app.component('weatherData', {
         $scope.getWeather = function () {
             $http({
                 method: 'GET',
-                url: 'http://api.openweathermap.org/data/2.5/weather?q=' + $scope.city + ',' + $scope.selectedItem.Code + '&appid=9e408b682013db6d717c50482741631e'
+                url: 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=' + $scope.city + ',' + $scope.selectedItem.Code + '&appid=9e408b682013db6d717c50482741631e'
             }).then(function (response) {
 
                 // Valid response
@@ -41225,13 +41225,24 @@ app.component('weatherData', {
                 };
 
                 $scope.bgImage = response.data.weather[0].icon;
-
                 document.querySelector('body').className = "";
                 document.querySelector('body').classList.add('img-icon-' + $scope.bgImage);
 
                 $scope.isDisabledF = true;
                 $scope.isDisabledC = false;
                 $scope.isMapOpen = false;
+
+                // Toggle map display and button text 
+                $scope.toggleMap = function () {
+                    if ($scope.isMapOpen === false) {
+                        document.querySelector('.showMap-btn button').innerHTML = 'Hide Map';
+                        $scope.isMapOpen = true;
+                    } else {
+                        document.querySelector('.showMap-btn button').innerHTML = 'Show Map';
+                        $scope.isMapOpen = false;
+                    }
+                };
+
                 $scope.changeTemp = function (unit) {
 
                     // anchor tag must be disabled after click
@@ -41268,6 +41279,7 @@ app.component('weatherData', {
                 $scope.error = "Results not found.";
                 document.querySelector('body').className = "";
                 document.querySelector('body').classList.add('no-img-icon');
+                document.querySelector('.showMap-btn button').innerHTML = 'Show Map';
             });
         };
 
