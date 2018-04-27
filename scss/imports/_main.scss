@@ -1,24 +1,15 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
-    
     box-sizing: border-box;
 }
 
-h1, h2, p, a {
-    text-shadow: 0 1px 0 black;
+h1,
+h2,
+p,
+a {
+    text-shadow: 0 2px 0 black;
     color: white;
 }
-
-body {
-    // background-image: url('../img/lukasz-lada-275650-unsplash.jpg');
-    background-size: cover;
-    background-position: right;
-    @media screen and (min-width: 768px) {
-        background-position: center;
-    }
-}
-
-
 
 .capitalize {
     text-transform: capitalize;
@@ -33,20 +24,17 @@ body {
 .app-title {
     text-align: center;
     h1 {
-        margin: 2rem 0 .5rem 0;
+        margin: 0 0 .5rem 0;
+        padding-top: 2rem;
     }
     h2 {
         font-size: 1rem;
-        
     }
     h3 {
         font-size: 1rem;
         margin: .5rem 0 1rem 0;
-        a {
-            color: black;
-        }
+        font-weight: normal;
     }
-
 }
 
 .form {
@@ -55,6 +43,9 @@ body {
     align-items: center;
     width: 100%;
     margin-bottom: 1rem;
+    p {
+        font-size: 1.1rem;
+    }
     input,
     select {
         width: 100%;
@@ -70,7 +61,6 @@ body {
         border: 1px solid #ced4da;
         border-radius: 0.25rem;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        
     }
     select {
         height: 36px;
@@ -95,22 +85,23 @@ body {
 
 .error {
     text-align: center;
-    font-size: 1.25rem;
+    p {
+        font-size: 1.25rem;
+        margin: 0;
+    }
 }
 
 .weather-container {
     width: 100%;
-    max-width: 500px;
-    // border: 1px solid black;
+    max-width: 500px; // border: 1px solid black;
     border-radius: 0.25rem;
-    margin: 0 auto 2rem auto;
+    margin: 0 auto 0 auto;
     position: relative;
     header {
         // background-color: cornflowerblue;
         width: 100%;
         padding-bottom: 1rem;
-    
-            margin: 0;
+        margin: 0;
         .location-title {
             font-size: 2rem;
             padding: 1rem 1rem;
@@ -121,34 +112,19 @@ body {
             padding: 0 1rem;
         }
     }
-
     .weather-card-inner {
         display: block;
         padding: 0 1rem;
-        margin-bottom: 2rem;
     }
-
     .weather-block {
-        margin-bottom: 6rem;
+        margin-bottom: 1rem;
         .time {
             font-size: 1.2rem;
         }
-        .weather-current {
-            position: absolute;
-            top: 200px;
-            left: auto;
-            right: 10%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+        .desc {
+            font-size: 1.2rem;
         }
     }
-
-    
-
-    
-    
     img {
         width: 100px;
         margin: 0;
@@ -156,7 +132,7 @@ body {
     }
     .weather-temp-current {
         font-size: 3rem;
-        margin: 0 0 0 1.3rem;
+        margin: 0;
         .current-temps {
             // display: flex;
             vertical-align: super;
@@ -167,10 +143,8 @@ body {
                 cursor: pointer;
                 display: inline-block;
                 margin: 0 0rem;
-                padding: 0.5rem; 
-                vertical-align: super;
-                
-                // &.active-temp-unit {
+                padding: 0.5rem;
+                vertical-align: super; // &.active-temp-unit {
                 //     // background-color: #0BB5FF;
                 //     cursor: auto;
                 //     transition: all 0.5s ease-in-out;
@@ -180,7 +154,6 @@ body {
                     border-radius: 5px;
                     cursor: auto;
                 }
-                
             }
             span {
                 font-size: 1.2rem;
@@ -206,10 +179,119 @@ body {
         max-width: 500px;
         max-height: 400px;
         height: 400px;
-        padding-top: 3rem;
     }
 }
 
+.fadeMap.ng-hide {
+    opacity: 0;
+}
+
+.fadeMap.ng-hide-add {
+    -webkit-animation: 0.5s lightSpeedOut ease;
+    animation: 1s lightSpeedOut ease;
+}
+
+.fadeMap.ng-hide-remove {
+    -webkit-animation: 0.5s flipInX ease;
+    animation: 1s flipInX ease;
+}
+
+.showMap-btn {
+    padding-bottom: 2rem;
+}
+
 .location-block {
-    padding-top: 3rem;
+    padding: 0 0 2rem 0; // opacity: 1;
+}
+
+/* ANIMATIONS (FROM ANIMATE.CSS) */
+
+/* flip in */
+
+@-webkit-keyframes flipInX {
+    0% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+        opacity: 0;
+    }
+    40% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+    }
+    60% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        opacity: 1;
+    }
+    80% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    }
+    100% {
+        -webkit-transform: perspective(400px);
+        transform: perspective(400px);
+    }
+}
+
+@keyframes flipInX {
+    0% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        -ms-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+        opacity: 0;
+    }
+    40% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        -ms-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+    }
+    60% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        -ms-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        opacity: 1;
+    }
+    80% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+        -ms-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    }
+    100% {
+        -webkit-transform: perspective(400px);
+        -ms-transform: perspective(400px);
+        transform: perspective(400px);
+    }
+}
+
+/* light speed out */
+
+@-webkit-keyframes lightSpeedOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);
+        transform: translate3d(100%, 0, 0) skewX(30deg);
+        opacity: 0;
+    }
+}
+
+@keyframes lightSpeedOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);
+        -ms-transform: translate3d(100%, 0, 0) skewX(30deg);
+        transform: translate3d(100%, 0, 0) skewX(30deg);
+        opacity: 0;
+    }
 }

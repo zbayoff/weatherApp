@@ -335,20 +335,12 @@ template {
   box-sizing: border-box;
 }
 
-h1, h2, p, a {
-  text-shadow: 0 1px 0 black;
+h1,
+h2,
+p,
+a {
+  text-shadow: 0 2px 0 black;
   color: white;
-}
-
-body {
-  background-size: cover;
-  background-position: right;
-}
-
-@media screen and (min-width: 768px) {
-  body {
-    background-position: center;
-  }
 }
 
 .capitalize {
@@ -366,7 +358,8 @@ body {
 }
 
 .app-title h1 {
-  margin: 2rem 0 .5rem 0;
+  margin: 0 0 .5rem 0;
+  padding-top: 2rem;
 }
 
 .app-title h2 {
@@ -376,10 +369,7 @@ body {
 .app-title h3 {
   font-size: 1rem;
   margin: .5rem 0 1rem 0;
-}
-
-.app-title h3 a {
-  color: black;
+  font-weight: normal;
 }
 
 .form {
@@ -388,6 +378,10 @@ body {
   align-items: center;
   width: 100%;
   margin-bottom: 1rem;
+}
+
+.form p {
+  font-size: 1.1rem;
 }
 
 .form input,
@@ -430,14 +424,18 @@ body {
 
 .error {
   text-align: center;
+}
+
+.error p {
   font-size: 1.25rem;
+  margin: 0;
 }
 
 .weather-container {
   width: 100%;
   max-width: 500px;
   border-radius: 0.25rem;
-  margin: 0 auto 2rem auto;
+  margin: 0 auto 0 auto;
   position: relative;
 }
 
@@ -461,26 +459,18 @@ body {
 .weather-container .weather-card-inner {
   display: block;
   padding: 0 1rem;
-  margin-bottom: 2rem;
 }
 
 .weather-container .weather-block {
-  margin-bottom: 6rem;
+  margin-bottom: 1rem;
 }
 
 .weather-container .weather-block .time {
   font-size: 1.2rem;
 }
 
-.weather-container .weather-block .weather-current {
-  position: absolute;
-  top: 200px;
-  left: auto;
-  right: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.weather-container .weather-block .desc {
+  font-size: 1.2rem;
 }
 
 .weather-container img {
@@ -491,7 +481,7 @@ body {
 
 .weather-container .weather-temp-current {
   font-size: 3rem;
-  margin: 0 0 0 1.3rem;
+  margin: 0;
 }
 
 .weather-container .weather-temp-current .current-temps {
@@ -539,10 +529,173 @@ body {
   max-width: 500px;
   max-height: 400px;
   height: 400px;
-  padding-top: 3rem;
+}
+
+.fadeMap.ng-hide {
+  opacity: 0;
+}
+
+.fadeMap.ng-hide-add {
+  -webkit-animation: 0.5s lightSpeedOut ease;
+  animation: 1s lightSpeedOut ease;
+}
+
+.fadeMap.ng-hide-remove {
+  -webkit-animation: 0.5s flipInX ease;
+  animation: 1s flipInX ease;
+}
+
+.showMap-btn {
+  padding-bottom: 2rem;
 }
 
 .location-block {
-  padding-top: 3rem;
+  padding: 0 0 2rem 0;
+}
+
+/* ANIMATIONS (FROM ANIMATE.CSS) */
+/* flip in */
+@-webkit-keyframes flipInX {
+  0% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    opacity: 0;
+  }
+  40% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+  }
+  60% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+  80% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+  100% {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+  }
+}
+
+@keyframes flipInX {
+  0% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -ms-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    opacity: 0;
+  }
+  40% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -ms-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+  }
+  60% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    -ms-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+  80% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    -ms-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+  100% {
+    -webkit-transform: perspective(400px);
+    -ms-transform: perspective(400px);
+    transform: perspective(400px);
+  }
+}
+
+/* light speed out */
+@-webkit-keyframes lightSpeedOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    opacity: 0;
+  }
+}
+
+@keyframes lightSpeedOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);
+    -ms-transform: translate3d(100%, 0, 0) skewX(30deg);
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    opacity: 0;
+  }
+}
+
+body {
+  background-color: white;
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    background-position: center;
+  }
+}
+
+body.no-img-icon h1, body.no-img-icon h2, body.no-img-icon p, body.no-img-icon a {
+  text-shadow: none;
+  color: black;
+}
+
+body.img-icon-01d {
+  background-image: url("../img/01d.jpg");
+}
+
+body.img-icon-02d {
+  background-image: url("../img/02d.jpg");
+}
+
+body.img-icon-03d {
+  background-image: url("../img/03d.jpg");
+}
+
+body.img-icon-04d {
+  background-image: url("../img/04d.jpg");
+}
+
+body.img-icon-09d, body.img-icon-09n, body.img-icon-10d, body.img-icon-10n {
+  background-image: url("../img/09d.jpg");
+}
+
+body.img-icon-11d, body.img-icon-11n {
+  background-image: url("../img/11d.jpg");
+  background-position: center;
+}
+
+body.img-icon-13d, body.img-icon-13n {
+  background-image: url("../img/13d.jpg");
+}
+
+body.img-icon-50d, body.img-icon-50n {
+  background-image: url("../img/50d.jpg");
+}
+
+body.img-icon-50d h1, body.img-icon-50d h2, body.img-icon-50d p, body.img-icon-50d a, body.img-icon-50n h1, body.img-icon-50n h2, body.img-icon-50n p, body.img-icon-50n a {
+  text-shadow: none;
+  color: black;
 }
 /*# sourceMappingURL=styles.css.map */

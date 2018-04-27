@@ -1,7 +1,8 @@
 import angular from 'angular';
 import ngRoute from 'angular-route';
+import ngAnimate from 'angular-animate';
 
-const app = angular.module('weatherApp', ['ngRoute']);
+const app = angular.module('weatherApp', ['ngRoute', 'ngAnimate']);
 
 app.config(function config($locationProvider, $routeProvider) {
     $routeProvider.when('/', {
@@ -14,7 +15,7 @@ app.config(function config($locationProvider, $routeProvider) {
 app.component('weatherData', {
     templateUrl: '/partials/weather.html',
     controller: function weatherController($scope, $http, $sce) {
-        
+
         // Generate list of countries with ISO 3166 country codes
         $scope.countries = [{
             "Code": "AF",
@@ -765,7 +766,6 @@ app.component('weatherData', {
             "Name": "Zimbabwe"
         }];
 
-
         // Set default city to Paris and Default country to France
         $scope.city = "Paris";
         $scope.selectedItem = $scope.countries[75];
@@ -778,8 +778,6 @@ app.component('weatherData', {
                 })
                 .then(function (response) {
 
-                    console.log(response.data);
-
                     // Valid response
                     $scope.error = "";
                     $scope.validEntry = true;
@@ -787,13 +785,13 @@ app.component('weatherData', {
 
                     let weatherDate = new Date(Date(response.data.dt));
                     weatherDate += "";
-                    
+
                     $scope.results = {
                         'city': response.data.name,
                         'country': $scope.selectedItem.Name,
                         'latitude': response.data.coord.lat,
                         'longitude': response.data.coord.lon,
-                        'datetime': weatherDate.substring(0,21),
+                        'datetime': weatherDate.substring(0, 21),
                         'desc': response.data.weather[0].description,
                         'tempCurrent': convertTemperature((response.data.main.temp - 273), 'F'),
                         'tempMax': convertTemperature((response.data.main.temp_max - 273), 'F'),
@@ -803,11 +801,12 @@ app.component('weatherData', {
 
                     $scope.bgImage = response.data.weather[0].icon;
 
-                    console.log($scope.bgImage);
+                    document.querySelector('body').className = "";
+                    document.querySelector('body').classList.add(`img-icon-${$scope.bgImage}`);
 
                     $scope.isDisabledF = true;
                     $scope.isDisabledC = false;
-
+                    $scope.isMapOpen = false;
                     $scope.changeTemp = function (unit) {
 
                         // anchor tag must be disabled after click
@@ -826,14 +825,14 @@ app.component('weatherData', {
 
                     }
 
-                    function convertTemperature (temp, unit) {
+                    function convertTemperature(temp, unit) {
                         let newTemp = 0;
                         if (unit === 'F') {
-                            newTemp = Math.round(((9/5)*temp) + 32);
+                            newTemp = Math.round(((9 / 5) * temp) + 32);
                         }
 
                         if (unit === 'C') {
-                            newTemp = Math.round((5/9)*(temp - 32));
+                            newTemp = Math.round((5 / 9) * (temp - 32));
                         }
                         return newTemp;
                     }
@@ -842,7 +841,10 @@ app.component('weatherData', {
                     // Non valid city/country
                     $scope.results = {};
                     $scope.validEntry = false;
+                    $scope.isMapOpen = false;
                     $scope.error = "Results not found."
+                    document.querySelector('body').className = "";
+                    document.querySelector('body').classList.add(`no-img-icon`);
                 });
         }
 
