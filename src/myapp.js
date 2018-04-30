@@ -806,6 +806,7 @@ app.component('weatherData', {
                     $scope.isDisabledF = true;
                     $scope.isDisabledC = false;
                     $scope.isMapOpen = false;
+                    document.querySelector('.showMap-btn button').innerHTML = 'Show Map';
 
                     // Toggle map display and button text 
                     $scope.toggleMap = function  () {
