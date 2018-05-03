@@ -778,6 +778,7 @@ app.component('weatherData', {
                 })
                 .then(function (response) {
 
+
                     // Valid response
                     $scope.error = "";
                     $scope.validEntry = true;
@@ -809,7 +810,7 @@ app.component('weatherData', {
                     document.querySelector('.showMap-btn button').innerHTML = 'Show Map';
 
                     // Toggle map display and button text 
-                    $scope.toggleMap = function  () {
+                    $scope.toggleMap = function () {
                         if ($scope.isMapOpen === false) {
                             document.querySelector('.showMap-btn button').innerHTML = 'Hide Map';
                             $scope.isMapOpen = true;
