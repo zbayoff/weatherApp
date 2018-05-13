@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "build": "webpack --progress --watch",
     "boom!": "concurrently \"npm run start\" \"npm run build\" "
   },
@@ -20,9 +20,7 @@
     "angular-route": "^1.6.2",
     "angular-sanitize": "^1.6.2",
     "body-parser": "~1.15.1",
-    "express": "~4.13.4",
-    "mongodb": "^2.2.5",
-    "mongoose": "^5.0.15"
+    "express": "~4.13.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
