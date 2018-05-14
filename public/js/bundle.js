@@ -40440,7 +40440,9 @@ app.config(function config($locationProvider, $routeProvider) {
 // Define component for Weather Data
 app.component('weatherData', {
     templateUrl: '/partials/weather.html',
-    controller: function weatherController($scope, $http, $sce) {
+    controller: function weatherController($scope, $http, $sce, $element) {
+
+        console.log($element);
 
         // Generate list of countries with ISO 3166 country codes
         $scope.countries = [{
@@ -41196,15 +41198,25 @@ app.component('weatherData', {
         $scope.city = "Paris";
         $scope.selectedItem = $scope.countries[75];
 
+        // Preload background images
+        var bgImageArray = ['01d.jpg', '01n.jpg', '02d.jpg', '02n.jpg', '03d.jpg', '03n.jpg', '04d.jpg', '04n.jpg', '09d.jpg', '11d.jpg', '13d.jpg', '50d.jpg'];
+        var base = './img/';
+        var bgImageObjArray = [];
+        var count = 0;
+
         // Make call to openweathermap API to GET weather data for specified city/country
         $scope.getWeather = function () {
+            $scope.loading = true;
+            $scope.error = false;
+            document.querySelector('body').className = "";
+            document.querySelector('body').classList.add('no-img-icon');
             $http({
                 method: 'GET',
                 url: 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=' + $scope.city + ',' + $scope.selectedItem.Code + '&appid=9e408b682013db6d717c50482741631e'
             }).then(function (response) {
 
                 // Valid response
-                $scope.error = "";
+                $scope.error = false;
                 $scope.validEntry = true;
                 $scope.url = $sce.trustAsResourceUrl('https://maps.google.com/maps?q=' + response.data.coord.lat + ',' + response.data.coord.lon + '&hl=es;z=14&output=embed');
 
@@ -41225,8 +41237,69 @@ app.component('weatherData', {
                 };
 
                 $scope.bgImage = response.data.weather[0].icon;
-                document.querySelector('body').className = "";
-                document.querySelector('body').classList.add('img-icon-' + $scope.bgImage);
+
+                console.log($scope.bgImage);
+
+                var bgImageObj = new Image();
+                bgImageObj.src = base + $scope.bgImage + '.jpg';
+
+                bgImageObj.onload = function () {
+                    document.querySelector('body').className = "";
+                    document.querySelector('body').classList.add('img-icon-' + $scope.bgImage);
+                    document.querySelector('body').classList.add('fadeBgImg');
+                };
+
+                // Check if image has been loaded....if yes, assign the proper class to the body element
+                // if no, wait until the image is loaded to add the proper class. 
+
+                // bgImageArray.forEach(function (img) {
+
+                //     bgImageObjArray[count] = new Image();
+                //     bgImageObjArray[count].src = base + img;
+                //     bgImageObjArray[count].alt = img;
+                //     count += 1;
+
+                // });
+                // console.log(bgImageArray);
+                // console.log(bgImageObjArray);
+
+                // // console.log(bgImageObjArray[1]);
+
+                // bgImageObjArray[1].onload = function () {
+                //     console.log('img 1 loaded');
+                // }
+                // bgImageObjArray[2].onload = function () {
+                //     console.log('img 2 loaded');
+                // }
+                // bgImageObjArray[3].onload = function () {
+                //     console.log('img 3 loaded');
+                // }
+                // bgImageObjArray[4].onload = function () {
+                //     console.log('img 4 loaded');
+                // }
+                // bgImageObjArray[5].onload = function () {
+                //     console.log('img 5 loaded');
+                // }
+                // bgImageObjArray[0].onload = function () {
+                //     console.log('img 0 loaded');
+                // }
+
+                // const bgImg = bgImageObjArray.find((img) => {
+                //     console.log(img);
+                //     return img.alt === $scope.bgImage + '.jpg';
+                // });
+
+                // document.querySelector('body').className = "";
+
+                // let bgImgLoaded = setInterval(function () {
+                //     if (bgImg.complete === true) {
+                //         document.querySelector('body').className = "";
+                //         document.querySelector('body').classList.add(`img-icon-${$scope.bgImage}`);
+                //         document.querySelector('body').classList.add(`fadeBgImg`);
+                //         clearInterval(bgImgLoaded);
+                //     }
+                // }, 100);
+
 
                 $scope.isDisabledF = true;
                 $scope.isDisabledC = false;
@@ -41273,20 +41346,26 @@ app.component('weatherData', {
                     return newTemp;
                 }
             }).catch(function (response) {
+                $scope.loading = false;
                 // Non valid city/country
                 $scope.results = {};
                 $scope.validEntry = false;
                 $scope.isMapOpen = false;
-                $scope.error = "Results not found.";
+                $scope.error = true;
                 document.querySelector('body').className = "";
                 document.querySelector('body').classList.add('no-img-icon');
                 document.querySelector('.showMap-btn button').innerHTML = 'Show Map';
+            }).finally(function () {
+                // document.querySelector('html').classList.remove('js-loading');
+
+                $scope.loading = false;
             });
         };
 
         // Call getWeather onload
         $scope.getWeather();
     }
+
 });
 
 /***/ })

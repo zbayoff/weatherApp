@@ -14,26 +14,37 @@
     </form>
 </div>
 
-<div class="error">
-    <p>{{error}}</p>
+<div ng-show="error" ng-class="{'error': error}">
+    <p>Results not found.</p>
 </div>
 
-<div class="weather-container ng-hide" ng-show="validEntry">
-    <header>
-        <h2 class="location-title capitalize">{{results.city}}, {{results.country}}</h2>
-        <p class="lat-long">Lat, Long: {{results.latitude}}&#176;, {{results.longitude}}&#176;</p>
-    </header>
-    <div class="weather-card-inner">
-        <div class="weather-block">
-            <p class="time">{{results.datetime}}</p>
-            <p class="weather-temp-current">{{results.tempCurrent}}<span class="current-temps"><a ng-class="{'active-temp-unit': isDisabledF}" ng-click="isDisabledF || changeTemp('F')">F&#176;</a><span>|</span><a ng-class="{'active-temp-unit': isDisabledC}" ng-click="isDisabledC || changeTemp('C')">C&#176;</a></span></p>
-            <p class="desc capitalize">{{results.desc}}</p>
-            <p class="weather-temp-lowhigh">{{results.tempMax}}&#176; / {{results.tempMin}}&#176;</p>
-        <div class="showMap-btn">
-            <button ng-click="toggleMap()">Show Map</button>
-        </div>
-        <div class="location-block fadeMap ng-hide" ng-show="isMapOpen">
-            <iframe frameborder="0" style="border:0" ng-src="{{url}}" allowfullscreen></iframe>
+<div class="spinner" ng-show="loading">
+    <img src="../img/spinner.gif" alt="">
+    </div>
+
+<div ng-show="!loading && validEntry">
+
+    <div class="weather-container ng-hide" ng-show="validEntry" ng-class="{'fade': !loading}">
+        <header>
+            <h2 class="location-title capitalize">{{results.city}}, {{results.country}}</h2>
+            <p class="lat-long">Lat, Long: {{results.latitude}}&#176;, {{results.longitude}}&#176;</p>
+        </header>
+        <div class="weather-card-inner">
+            <div class="weather-block">
+                <p class="time">{{results.datetime}}</p>
+                <p class="weather-temp-current">{{results.tempCurrent}}
+                    <span class="current-temps">
+                        <a ng-class="{'active-temp-unit': isDisabledF}" ng-click="isDisabledF || changeTemp('F')">F&#176;</a><span>|</span><a ng-class="{'active-temp-unit': isDisabledC}" ng-click="isDisabledC || changeTemp('C')">C&#176;</a>
+                    </span>
+                </p>
+                <p class="desc capitalize">{{results.desc}}</p>
+                <p class="weather-temp-lowhigh">{{results.tempMax}}&#176; / {{results.tempMin}}&#176;</p>
+                <div class="showMap-btn">
+                    <button ng-click="toggleMap()">Show Map</button>
+                </div>
+                <div class="location-block fadeMap ng-hide" ng-show="isMapOpen">
+                    <iframe frameborder="0" style="border:0" ng-src="{{url}}" allowfullscreen></iframe>
+                </div>
+            </div>
         </div>
     </div>
-</div>

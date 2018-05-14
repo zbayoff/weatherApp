@@ -431,6 +431,7 @@ a {
 
 .error {
   text-align: center;
+  margin-bottom: 1rem;
 }
 
 .error p {
@@ -662,18 +663,30 @@ a {
   }
 }
 
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* The starting CSS styles for the enter animation */
+.fade-add {
+  -webkit-animation: 1s flipInX ease;
+  animation: 1s flipInX ease;
+}
+
+.js-loading,
+.js-loading:before,
+.js-loading:after {
+  animation-play-state: paused !important;
+}
+
 body {
   background-color: white;
   background-size: cover;
-  background-position: right;
   background-repeat: no-repeat;
   min-height: 100vh;
-}
-
-@media screen and (min-width: 768px) {
-  body {
-    background-position: center;
-  }
 }
 
 body.no-img-icon h1, body.no-img-icon h2, body.no-img-icon p, body.no-img-icon a {
@@ -687,55 +700,77 @@ body.no-img-icon h3 a {
 
 body.img-icon-01d {
   background-image: url("../img/01d.jpg");
+  animation: bgImgFade 2s ease;
 }
 
 body.img-icon-01n {
   background-image: url("../img/01n.jpg");
+  animation: bgImgFade 2s ease;
 }
 
 body.img-icon-02d {
   background-image: url("../img/02d.jpg");
+  animation: bgImgFade 2s ease;
 }
 
 body.img-icon-02n {
   background-image: url("../img/02n.jpg");
+  animation: bgImgFade 2s ease;
 }
 
 body.img-icon-03d {
   background-image: url("../img/03d.jpg");
+  animation: bgImgFade 2s ease;
 }
 
 body.img-icon-03n {
   background-image: url("../img/03n.jpg");
+  animation: bgImgFade 2s ease;
 }
 
 body.img-icon-04d {
   background-image: url("../img/04d.jpg");
+  animation: bgImgFade 2s ease;
 }
 
 body.img-icon-04n {
   background-image: url("../img/04n.jpg");
+  animation: bgImgFade 2s ease;
 }
 
 body.img-icon-09d, body.img-icon-09n, body.img-icon-10d, body.img-icon-10n {
   background-image: url("../img/09d.jpg");
+  animation: bgImgFade 2s ease;
 }
 
 body.img-icon-11d, body.img-icon-11n {
   background-image: url("../img/11d.jpg");
-  background-position: center;
+  animation: bgImgFade 2s ease;
 }
 
 body.img-icon-13d, body.img-icon-13n {
   background-image: url("../img/13d.jpg");
+  animation: bgImgFade 2s ease;
 }
 
 body.img-icon-50d, body.img-icon-50n {
   background-image: url("../img/50d.jpg");
+  animation: bgImgFade 2s ease;
 }
 
 body.img-icon-50d h1, body.img-icon-50d h2, body.img-icon-50d p, body.img-icon-50d a, body.img-icon-50n h1, body.img-icon-50n h2, body.img-icon-50n p, body.img-icon-50n a {
   text-shadow: none;
   color: black;
+}
+
+@keyframes bgImgFade {
+  0% {
+    opacity: 0;
+    background-position: 20%;
+  }
+  100% {
+    background-position: 0%;
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=styles.css.map */
