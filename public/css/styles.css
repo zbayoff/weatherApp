@@ -574,8 +574,6 @@ a {
   padding: 0 0 2rem 0;
 }
 
-/* ANIMATIONS (FROM ANIMATE.CSS) */
-/* flip in */
 @-webkit-keyframes flipInX {
   0% {
     -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
@@ -639,7 +637,6 @@ a {
   }
 }
 
-/* light speed out */
 @-webkit-keyframes lightSpeedOut {
   0% {
     opacity: 1;
@@ -671,106 +668,248 @@ a {
 }
 
 /* The starting CSS styles for the enter animation */
-.fade-add {
-  -webkit-animation: 1s flipInX ease;
-  animation: 1s flipInX ease;
-}
-
-.js-loading,
-.js-loading:before,
-.js-loading:after {
-  animation-play-state: paused !important;
-}
-
-body {
-  background-color: white;
+main {
+  overflow: hidden;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
-body.no-img-icon h1, body.no-img-icon h2, body.no-img-icon p, body.no-img-icon a {
+main.no-img-icon h1,
+main.no-img-icon h2,
+main.no-img-icon p,
+main.no-img-icon a {
   text-shadow: none;
   color: black;
 }
 
-body.no-img-icon h3 a {
+main.no-img-icon h3 a {
   border-bottom: 1px solid black;
 }
 
-body.img-icon-01d {
+main.img-icon-01d::before {
   background-image: url("../img/01d.jpg");
-  animation: bgImgFade 2s ease;
+  -webkit-animation: bgImgFade 3s ease;
+  animation: bgImgFade 3s ease;
+  background-size: cover;
+  content: "";
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 
-body.img-icon-01n {
+main.img-icon-01n::before {
   background-image: url("../img/01n.jpg");
-  animation: bgImgFade 2s ease;
+  -webkit-animation: bgImgFade 3s ease;
+  animation: bgImgFade 3s ease;
+  background-size: cover;
+  content: "";
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 
-body.img-icon-02d {
+main.img-icon-02d::before {
   background-image: url("../img/02d.jpg");
-  animation: bgImgFade 2s ease;
+  -webkit-animation: bgImgFade 3s ease;
+  animation: bgImgFade 3s ease;
+  background-size: cover;
+  content: "";
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 
-body.img-icon-02n {
+main.img-icon-02n::before {
   background-image: url("../img/02n.jpg");
-  animation: bgImgFade 2s ease;
+  -webkit-animation: bgImgFade 3s ease;
+  animation: bgImgFade 3s ease;
+  background-size: cover;
+  content: "";
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 
-body.img-icon-03d {
+main.img-icon-03d::before {
   background-image: url("../img/03d.jpg");
-  animation: bgImgFade 2s ease;
+  -webkit-animation: bgImgFade 3s ease;
+  animation: bgImgFade 3s ease;
+  background-size: cover;
+  content: "";
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 
-body.img-icon-03n {
+main.img-icon-03n::before {
   background-image: url("../img/03n.jpg");
-  animation: bgImgFade 2s ease;
+  -webkit-animation: bgImgFade 3s ease;
+  animation: bgImgFade 3s ease;
+  background-size: cover;
+  content: "";
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 
-body.img-icon-04d {
+main.img-icon-04d::before {
   background-image: url("../img/04d.jpg");
-  animation: bgImgFade 2s ease;
+  -webkit-animation: bgImgFade 3s ease;
+  animation: bgImgFade 3s ease;
+  background-size: cover;
+  content: "";
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 
-body.img-icon-04n {
+main.img-icon-04n::before {
   background-image: url("../img/04n.jpg");
-  animation: bgImgFade 2s ease;
+  -webkit-animation: bgImgFade 3s ease;
+  animation: bgImgFade 3s ease;
+  background-size: cover;
+  content: "";
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 
-body.img-icon-09d, body.img-icon-09n, body.img-icon-10d, body.img-icon-10n {
+main.img-icon-09d::before, main.img-icon-09n::before, main.img-icon-10d::before, main.img-icon-10n::before {
   background-image: url("../img/09d.jpg");
-  animation: bgImgFade 2s ease;
+  -webkit-animation: bgImgFade 3s ease;
+  animation: bgImgFade 3s ease;
+  background-size: cover;
+  content: "";
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
 }
 
-body.img-icon-11d, body.img-icon-11n {
+main.img-icon-11d::before, main.img-icon-11n::before {
   background-image: url("../img/11d.jpg");
-  animation: bgImgFade 2s ease;
+  -webkit-animation: bgImgFade 3s ease;
+  animation: bgImgFade 3s ease;
+  background-size: cover;
+  content: "";
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 
-body.img-icon-13d, body.img-icon-13n {
+main.img-icon-13d::before, main.img-icon-13n::before {
   background-image: url("../img/13d.jpg");
-  animation: bgImgFade 2s ease;
+  -webkit-animation: bgImgFade 3s ease;
+  animation: bgImgFade 3s ease;
+  background-size: cover;
+  content: "";
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }
 
-body.img-icon-50d, body.img-icon-50n {
-  background-image: url("../img/50d.jpg");
-  animation: bgImgFade 2s ease;
-}
-
-body.img-icon-50d h1, body.img-icon-50d h2, body.img-icon-50d p, body.img-icon-50d a, body.img-icon-50n h1, body.img-icon-50n h2, body.img-icon-50n p, body.img-icon-50n a {
+main.img-icon-50d h1,
+main.img-icon-50d h2,
+main.img-icon-50d p,
+main.img-icon-50d a, main.img-icon-50n h1,
+main.img-icon-50n h2,
+main.img-icon-50n p,
+main.img-icon-50n a {
   text-shadow: none;
   color: black;
+}
+
+main.img-icon-50d::before, main.img-icon-50n::before {
+  background-image: url("../img/50d.jpg");
+  -webkit-animation: bgImgFade 3s ease;
+  animation: bgImgFade 3s ease;
+  background-size: cover;
+  content: "";
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+@-webkit-keyframes bgImgFade {
+  0% {
+    opacity: 0;
+    overflow: hidden;
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+    overflow: hidden;
+  }
 }
 
 @keyframes bgImgFade {
   0% {
     opacity: 0;
-    background-position: 20%;
+    overflow: hidden;
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
   }
   100% {
-    background-position: 0%;
     opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+    overflow: hidden;
   }
 }
 /*# sourceMappingURL=styles.css.map */

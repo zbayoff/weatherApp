@@ -1,127 +1,251 @@
-.js-loading,
-.js-loading:before,
-.js-loading:after {
-    animation-play-state: paused !important;
-}
+$bgImageDuration: 3s;
 
 
-body {
-    background-color: white;
-    background-size: cover;
-    // background-position: right;
+main {
+    overflow: hidden; // background-color: white;
+    background-size: cover; // background-position: right;
     // background-position: 20%;
     background-repeat: no-repeat;
     min-height: 100vh;
-    // animation: bgImgFadeWhite 2s ease;
-
-    &.fadeBgImg {
-
-    }
-
+    position: absolute;
+    top: 0;
+    left: 0; // height: 100%;
+    width: 100%; // animation: bgImgFadeWhite 2s ease;
+    &.fadeBgImg {}
     @media screen and (min-width: 768px) {
         // background-position: center;
     }
-
     &.no-img-icon {
-        h1, h2, p, a {
+        // animation: fadeOut $bgImageDurationLong ease;
+        h1,
+        h2,
+        p,
+        a {
             text-shadow: none;
             color: black;
         }
-
         h3 a {
             border-bottom: 1px solid black;
         }
-        
     }
-
-    &.img-icon-01d {
+    &.img-icon-01d::before {
         background-image: url('../img/01d.jpg');
-        animation: bgImgFade 2s ease;
+        -webkit-animation: bgImgFade $bgImageDuration ease;
+        animation: bgImgFade $bgImageDuration ease;
+        background-size: cover;
+        content: "";
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
     }
-
-    &.img-icon-01n {
+    &.img-icon-01n::before {
         background-image: url('../img/01n.jpg');
-        animation: bgImgFade 2s ease;
+        -webkit-animation: bgImgFade $bgImageDuration ease;
+        animation: bgImgFade $bgImageDuration ease;
+        background-size: cover;
+        content: "";
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
     }
-
-    &.img-icon-02d {
+    &.img-icon-02d::before {
         background-image: url('../img/02d.jpg');
-        animation: bgImgFade 2s ease;
+        -webkit-animation: bgImgFade $bgImageDuration ease;
+        animation: bgImgFade $bgImageDuration ease;
+        background-size: cover;
+        content: "";
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
     }
-
-    &.img-icon-02n {
+    &.img-icon-02n::before {
         background-image: url('../img/02n.jpg');
-        animation: bgImgFade 2s ease;
+        -webkit-animation: bgImgFade $bgImageDuration ease;
+        animation: bgImgFade $bgImageDuration ease;
+        background-size: cover;
+        content: "";
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
     }
-
-    &.img-icon-03d {
+    &.img-icon-03d::before {
         background-image: url('../img/03d.jpg');
-        animation: bgImgFade 2s ease;
+        -webkit-animation: bgImgFade $bgImageDuration ease;
+        animation: bgImgFade $bgImageDuration ease;
+        background-size: cover;
+        content: "";
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
     }
-
-    &.img-icon-03n {
+    &.img-icon-03n::before {
         background-image: url('../img/03n.jpg');
-        animation: bgImgFade 2s ease;
+        -webkit-animation: bgImgFade $bgImageDuration ease;
+        animation: bgImgFade $bgImageDuration ease;
+        background-size: cover;
+        content: "";
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
     }
-
-    &.img-icon-04d {
+    &.img-icon-04d::before {
         background-image: url('../img/04d.jpg');
-        animation: bgImgFade 2s ease;
+        -webkit-animation: bgImgFade $bgImageDuration ease;
+        animation: bgImgFade $bgImageDuration ease;
+        background-size: cover;
+        content: "";
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
     }
-
-    &.img-icon-04n {
+    &.img-icon-04n::before {
         background-image: url('../img/04n.jpg');
-        animation: bgImgFade 2s ease;
+        -webkit-animation: bgImgFade $bgImageDuration ease;
+        animation: bgImgFade $bgImageDuration ease;
+        background-size: cover;
+        content: "";
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
     }
-
-    &.img-icon-09d, &.img-icon-09n, &.img-icon-10d, &.img-icon-10n {
+    &.img-icon-09d::before,
+    &.img-icon-09n::before,
+    &.img-icon-10d::before,
+    &.img-icon-10n::before,
+        {
         background-image: url('../img/09d.jpg');
-        animation: bgImgFade 2s ease;
+        -webkit-animation: bgImgFade $bgImageDuration ease;
+        animation: bgImgFade $bgImageDuration ease;
+        background-size: cover;
+        content: "";
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        overflow: hidden;
     }
-
-    &.img-icon-11d, &.img-icon-11n{
-        background-image: url('../img/11d.jpg');
-        // background-position: center;
-        animation: bgImgFade 2s ease;
+    &.img-icon-11d::before,
+    &.img-icon-11n::before {
+        background-image: url('../img/11d.jpg'); // background-position: center;
+        -webkit-animation: bgImgFade $bgImageDuration ease;
+        animation: bgImgFade $bgImageDuration ease;
+        background-size: cover;
+        content: "";
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
     }
-
-    &.img-icon-13d, &.img-icon-13n{
+    &.img-icon-13d::before,
+    &.img-icon-13n::before {
         background-image: url('../img/13d.jpg');
-        animation: bgImgFade 2s ease;
+        -webkit-animation: bgImgFade $bgImageDuration ease;
+        animation: bgImgFade $bgImageDuration ease;
+        background-size: cover;
+        content: "";
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
     }
-
-    &.img-icon-50d, &.img-icon-50n {
-        background-image: url('../img/50d.jpg');
-        h1, h2, p, a {
+    &.img-icon-50d,
+    &.img-icon-50n {
+        h1,
+        h2,
+        p,
+        a {
             text-shadow: none;
             color: black;
         }
-        animation: bgImgFade 2s ease;
-        
     }
-
+    &.img-icon-50d::before,
+    &.img-icon-50n::before {
+        background-image: url('../img/50d.jpg');
+        -webkit-animation: bgImgFade $bgImageDuration ease;
+        animation: bgImgFade $bgImageDuration ease;
+        background-size: cover;
+        content: "";
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+    }
 }
 
-// @keyframes bgImgFadeWhite {
-//     0% {
-//         opacity: 0;
-//     }
-//     100% {
-//         opacity: 1;
-//     }
-// }
+@-webkit-keyframes bgImgFade {
+    0% {
+        opacity: 0; // transform: translate3d(0, 0, 0) skewX(30deg);
+        // background-position: 20%;
+        overflow: hidden;
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    100% {
+        // background-position: 0%;
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none; // background-position: 100% 0%;
+        overflow: hidden;
+    }
+}
 
 @keyframes bgImgFade {
     0% {
-        opacity: 0;
-        // transform: translate3d(0, 0, 0) skewX(30deg);
-        background-position: 20%;
+        opacity: 0; // transform: translate3d(0, 0, 0) skewX(30deg);
+        // background-position: 20%;
+        overflow: hidden;
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
     }
     100% {
-        background-position: 0%;
+        // background-position: 0%;
         opacity: 1;
+        -webkit-transform: none;
+        transform: none; // background-position: 100% 0%;
+        overflow: hidden;
     }
 }
-
-
-

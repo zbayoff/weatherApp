@@ -16,7 +16,7 @@ app.component('weatherData', {
     templateUrl: '/partials/weather.html',
     controller: function weatherController($scope, $http, $sce, $element) {
 
-        console.log($element);
+        console.log($sce);
 
         // Generate list of countries with ISO 3166 country codes
         $scope.countries = [{
@@ -775,12 +775,11 @@ app.component('weatherData', {
         $scope.selectedItem = $scope.countries[75];
 
         // Preload background images
-        let bgImageArray = [
-            '01d.jpg', '01n.jpg', '02d.jpg', '02n.jpg', '03d.jpg', '03n.jpg', '04d.jpg', '04n.jpg', '09d.jpg', '11d.jpg', '13d.jpg', '50d.jpg'
-        ];
+
         let base = './img/';
         let bgImageObjArray = [];
         let count = 0;
+        let firstImgLoaded = false;
 
 
 
@@ -788,11 +787,12 @@ app.component('weatherData', {
         $scope.getWeather = function () {
             $scope.loading = true;
             $scope.error = false;
-            document.querySelector('body').className = "";
-            document.querySelector('body').classList.add(`no-img-icon`);
+            document.querySelector('main').className = "";
+            document.querySelector('main').classList.add(`no-img-icon`);
             $http({
                     method: 'GET',
-                    url: `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=${$scope.city},${$scope.selectedItem.Code}&appid=9e408b682013db6d717c50482741631e`
+                    // url: `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=${$scope.city},${$scope.selectedItem.Code}&appid=9e408b682013db6d717c50482741631e`
+                    url: `https://api.openweathermap.org/data/2.5/weather?q=${$scope.city},${$scope.selectedItem.Code}&appid=9e408b682013db6d717c50482741631e`
                 })
                 .then(function (response) {
 
@@ -819,16 +819,63 @@ app.component('weatherData', {
 
                     $scope.bgImage = response.data.weather[0].icon;
 
-                    console.log($scope.bgImage);
+                    if ($scope.bgImage === '09n' || $scope.bgImage === '10d' || $scope.bgImage === '10n') {
+                        $scope.bgImage = '09d';
+                    }
+
+                    if ($scope.bgImage === '11n') {
+                        $scope.bgImage = '11d';
+                    }
+
+                    if ($scope.bgImage === '13n') {
+                        $scope.bgImage = '13d';
+                    }
+
+                    if ($scope.bgImage === '50n') {
+                        $scope.bgImage = '50d';
+                    }
+
+                    // console.log($scope.bgImage);
+
+
 
                     let bgImageObj = new Image();
                     bgImageObj.src = base + $scope.bgImage + '.jpg';
 
                     bgImageObj.onload = function () {
-                        document.querySelector('body').className = "";
-                        document.querySelector('body').classList.add(`img-icon-${$scope.bgImage}`);
-                        document.querySelector('body').classList.add(`fadeBgImg`);
+                        document.querySelector('main').className = "";
+                        document.querySelector('main').classList.add(`img-icon-${$scope.bgImage}`);
+                        document.querySelector('main').classList.add(`fadeBgImg`);
+
+                        firstImgLoaded = true;
+                        console.log('firstImgLoaded is true');
+                        preloadOtherImages();
                     }
+
+                    if (firstImgLoaded === true) {
+                        console.log('yes');
+                        document.querySelector('main').className = "";
+                        document.querySelector('main').classList.add(`img-icon-${$scope.bgImage}`);
+                        document.querySelector('main').classList.add(`fadeBgImg`);
+                    }
+
+                    function preloadOtherImages() {
+                        let bgImageArray = [
+                            '01d.jpg', '01n.jpg', '02d.jpg', '02n.jpg', '03d.jpg', '03n.jpg', '04d.jpg', '04n.jpg', '09d.jpg', '11d.jpg', '13d.jpg', '50d.jpg'
+                        ];
+
+                        bgImageArray.forEach(function (img) {
+
+                            bgImageObjArray[count] = new Image();
+                            bgImageObjArray[count].src = base + img;
+                            // bgImageObjArray[count].alt = img;
+                            count += 1;
+
+                        });
+
+                    }
+
+
 
 
                     // Check if image has been loaded....if yes, assign the proper class to the body element
@@ -937,8 +984,8 @@ app.component('weatherData', {
                     $scope.validEntry = false;
                     $scope.isMapOpen = false;
                     $scope.error = true;
-                    document.querySelector('body').className = "";
-                    document.querySelector('body').classList.add(`no-img-icon`);
+                    document.querySelector('main').className = "";
+                    document.querySelector('main').classList.add(`no-img-icon`);
                     document.querySelector('.showMap-btn button').innerHTML = 'Show Map';
 
                 })

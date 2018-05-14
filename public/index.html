@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="js-loading">
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
@@ -9,18 +9,23 @@
 	<base href="/">
 </head>
 
-<body class="no-img-icon" ng-app="weatherApp">
-	<div class="container">
-		<header class="app-title">
+<body  ng-app="weatherApp">
+	<main class="no-img-icon">
+		<div class="container">
+			<header class="app-title">
 				<h1>Weather App</h1>
 				<h2>With AngularJS, Express.js and Node.js</h2>
-				<h3><a href="https://github.com/zbayoff/weatherApp" target="_blank">Project Repo</a></h3>
-		</header>
-		
-		<div ng-view>
+				<h3>
+					<a href="https://github.com/zbayoff/weatherApp" target="_blank">Project Repo</a>
+				</h3>
+			</header>
 
+			<div ng-view>
+
+			</div>
 		</div>
-	</div>
+	</main>
+
 
 
 	<script src="/js/bundle.js"></script>
