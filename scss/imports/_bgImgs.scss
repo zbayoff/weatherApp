@@ -2,6 +2,7 @@ $bgImageDuration: 3s;
 
 
 main {
+
     overflow: hidden; // background-color: white;
     background-size: cover; // background-position: right;
     // background-position: 20%;
@@ -16,18 +17,34 @@ main {
         // background-position: center;
     }
     &.no-img-icon {
-        // animation: fadeOut $bgImageDurationLong ease;
+        
         h1,
         h2,
         p,
         a {
             text-shadow: none;
             color: black;
+            transition: color 1s ease;
         }
         h3 a {
             border-bottom: 1px solid black;
         }
     }
+
+    &.no-img-icon::before {
+        animation: fadeOut $bgImageDuration ease;
+        background-color: white;
+        background-size: cover;
+        content: "";
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+    }
+
     &.img-icon-01d::before {
         background-image: url('../img/01d.jpg');
         -webkit-animation: bgImgFade $bgImageDuration ease;
@@ -198,6 +215,9 @@ main {
             text-shadow: none;
             color: black;
         }
+        h3 a {
+            border-bottom: 1px solid black;
+        }
     }
     &.img-icon-50d::before,
     &.img-icon-50n::before {
@@ -233,6 +253,15 @@ main {
     }
 }
 
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 @keyframes bgImgFade {
     0% {
         opacity: 0; // transform: translate3d(0, 0, 0) skewX(30deg);
@@ -248,4 +277,8 @@ main {
         transform: none; // background-position: 100% 0%;
         overflow: hidden;
     }
+}
+
+.fadeBgImg-add {
+    transition: color 2s ease;
 }

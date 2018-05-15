@@ -1,6 +1,9 @@
 import angular from 'angular';
 import ngRoute from 'angular-route';
 import ngAnimate from 'angular-animate';
+import smoothscroll from 'smoothscroll-polyfill';
+
+smoothscroll.polyfill();
 
 const app = angular.module('weatherApp', ['ngRoute', 'ngAnimate']);
 
@@ -15,8 +18,6 @@ app.config(function config($locationProvider, $routeProvider) {
 app.component('weatherData', {
     templateUrl: '/partials/weather.html',
     controller: function weatherController($scope, $http, $sce, $element) {
-
-        console.log($sce);
 
         // Generate list of countries with ISO 3166 country codes
         $scope.countries = [{
@@ -774,13 +775,11 @@ app.component('weatherData', {
         $scope.city = "Paris";
         $scope.selectedItem = $scope.countries[75];
 
-        // Preload background images
-
+        // Set variables for preloading images
         let base = './img/';
+        let firstImgLoaded = false;
         let bgImageObjArray = [];
         let count = 0;
-        let firstImgLoaded = false;
-
 
 
         // Make call to openweathermap API to GET weather data for specified city/country
@@ -819,6 +818,7 @@ app.component('weatherData', {
 
                     $scope.bgImage = response.data.weather[0].icon;
 
+                    // Change icon string to avoid duplicate images for similar weather types
                     if ($scope.bgImage === '09n' || $scope.bgImage === '10d' || $scope.bgImage === '10n') {
                         $scope.bgImage = '09d';
                     }
@@ -835,10 +835,7 @@ app.component('weatherData', {
                         $scope.bgImage = '50d';
                     }
 
-                    // console.log($scope.bgImage);
-
-
-
+                    // Preload images, load the first image first, then the rest.
                     let bgImageObj = new Image();
                     bgImageObj.src = base + $scope.bgImage + '.jpg';
 
@@ -848,12 +845,10 @@ app.component('weatherData', {
                         document.querySelector('main').classList.add(`fadeBgImg`);
 
                         firstImgLoaded = true;
-                        console.log('firstImgLoaded is true');
                         preloadOtherImages();
                     }
 
                     if (firstImgLoaded === true) {
-                        console.log('yes');
                         document.querySelector('main').className = "";
                         document.querySelector('main').classList.add(`img-icon-${$scope.bgImage}`);
                         document.querySelector('main').classList.add(`fadeBgImg`);
@@ -868,84 +863,42 @@ app.component('weatherData', {
 
                             bgImageObjArray[count] = new Image();
                             bgImageObjArray[count].src = base + img;
-                            // bgImageObjArray[count].alt = img;
                             count += 1;
 
                         });
-
                     }
 
+                    // Toggle map display and button text 
+                    const showMapButton = document.querySelector('.showMap-btn button');
+                    showMapButton.innerHTML = 'Show Map';
+                    $scope.toggleMap = function () {
+                        if ($scope.isMapOpen === false) {
+                            showMapButton.innerHTML = 'Hide Map';
+                            $scope.isMapOpen = true;
+                            // showMapButton.scrollTop = 400;
+                            // window.scrollTo(0,document.querySelector('main').scrollHeight);
+                            
+                            setTimeout(() => {
+                                // document.querySelector('.location-block').scrollIntoView(false);
+                                // showMapButton.offsetTop - 100;
+                                // window.scrollTo(0,0,document.querySelector('main').scrollHeight);
+                                window.scroll({ top: 2500, left: 0, behavior: 'smooth' });
+                            }, 10);
+                            
 
+                        } else {
+                            showMapButton.innerHTML = 'Show Map';
+                            $scope.isMapOpen = false;
+                            setTimeout(() => {
+                                window.scroll({ top: 200, left: 0, behavior: 'smooth' });
+                            }, 800);
+                        }
+                    }
 
-
-                    // Check if image has been loaded....if yes, assign the proper class to the body element
-                    // if no, wait until the image is loaded to add the proper class. 
-
-                    // bgImageArray.forEach(function (img) {
-
-                    //     bgImageObjArray[count] = new Image();
-                    //     bgImageObjArray[count].src = base + img;
-                    //     bgImageObjArray[count].alt = img;
-                    //     count += 1;
-
-                    // });
-                    // console.log(bgImageArray);
-                    // console.log(bgImageObjArray);
-
-                    // // console.log(bgImageObjArray[1]);
-
-                    // bgImageObjArray[1].onload = function () {
-                    //     console.log('img 1 loaded');
-                    // }
-                    // bgImageObjArray[2].onload = function () {
-                    //     console.log('img 2 loaded');
-                    // }
-                    // bgImageObjArray[3].onload = function () {
-                    //     console.log('img 3 loaded');
-                    // }
-                    // bgImageObjArray[4].onload = function () {
-                    //     console.log('img 4 loaded');
-                    // }
-                    // bgImageObjArray[5].onload = function () {
-                    //     console.log('img 5 loaded');
-                    // }
-                    // bgImageObjArray[0].onload = function () {
-                    //     console.log('img 0 loaded');
-                    // }
-
-                    // const bgImg = bgImageObjArray.find((img) => {
-                    //     console.log(img);
-                    //     return img.alt === $scope.bgImage + '.jpg';
-                    // });
-
-                    // document.querySelector('body').className = "";
-
-                    // let bgImgLoaded = setInterval(function () {
-                    //     if (bgImg.complete === true) {
-                    //         document.querySelector('body').className = "";
-                    //         document.querySelector('body').classList.add(`img-icon-${$scope.bgImage}`);
-                    //         document.querySelector('body').classList.add(`fadeBgImg`);
-                    //         clearInterval(bgImgLoaded);
-                    //     }
-                    // }, 100);
-
-
-
+                    // Control for converting temperature
                     $scope.isDisabledF = true;
                     $scope.isDisabledC = false;
                     $scope.isMapOpen = false;
-                    document.querySelector('.showMap-btn button').innerHTML = 'Show Map';
-
-                    // Toggle map display and button text 
-                    $scope.toggleMap = function () {
-                        if ($scope.isMapOpen === false) {
-                            document.querySelector('.showMap-btn button').innerHTML = 'Hide Map';
-                            $scope.isMapOpen = true;
-                        } else {
-                            document.querySelector('.showMap-btn button').innerHTML = 'Show Map';
-                            $scope.isMapOpen = false;
-                        }
-                    }
 
                     $scope.changeTemp = function (unit) {
 
@@ -978,8 +931,8 @@ app.component('weatherData', {
                     }
                 })
                 .catch(function (response) {
-                    $scope.loading = false;
                     // Non valid city/country
+                    $scope.loading = false;
                     $scope.results = {};
                     $scope.validEntry = false;
                     $scope.isMapOpen = false;
@@ -990,15 +943,10 @@ app.component('weatherData', {
 
                 })
                 .finally(function () {
-                    // document.querySelector('html').classList.remove('js-loading');
-
                     $scope.loading = false;
                 });
         }
-
         // Call getWeather onload
         $scope.getWeather();
-
     }
-
 });

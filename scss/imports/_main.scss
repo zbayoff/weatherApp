@@ -3,6 +3,12 @@
     box-sizing: border-box;
 }
 
+body {
+    margin-bottom: 1rem;
+    height: 100%;
+    min-height: 100vh;
+}
+
 h1,
 h2,
 p,
@@ -244,7 +250,7 @@ a {
     60% {
         -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
         transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
-        opacity: 1;
+        
     }
     80% {
         -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
@@ -253,6 +259,7 @@ a {
     100% {
         -webkit-transform: perspective(400px);
         transform: perspective(400px);
+        opacity: 1;
     }
 }
 
@@ -276,7 +283,7 @@ a {
         -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
         -ms-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
         transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
-        opacity: 1;
+        
     }
     80% {
         -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
@@ -287,6 +294,7 @@ a {
         -webkit-transform: perspective(400px);
         -ms-transform: perspective(400px);
         transform: perspective(400px);
+        opacity: 1;
     }
 }
 
@@ -328,8 +336,3 @@ a {
 
 /* The starting CSS styles for the enter animation */
 
-.fade-add {
-    // opacity: 0;
-    // -webkit-animation: 1s flipInX ease;
-    // animation: 1s flipInX ease;
-}
