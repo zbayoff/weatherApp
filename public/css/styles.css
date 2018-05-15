@@ -399,6 +399,17 @@ a {
   font-size: 1.1rem;
 }
 
+.form label.screen-reader-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
 .form input,
 .form select {
   width: 100%;
@@ -516,7 +527,7 @@ a {
 }
 
 .weather-container .weather-temp-current .current-temps a.active-temp-unit {
-  color: cornflowerblue;
+  text-decoration: underline;
   border-radius: 5px;
   cursor: auto;
 }

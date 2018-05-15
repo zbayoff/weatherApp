@@ -3,13 +3,16 @@
     <form ng-submit="getWeather()">
         <p>Enter a city/postal code and country to get the current weather.</p>
         <div>
-            <input type="text" placeholder="Enter a City Name or Postal Code" name="city-name" ng-model="city">
+            <label class="screen-reader-only" for="city-name">Enter a City Name or Postal Code</label>
+            <input type="text" placeholder="Enter a City Name or Postal Code" id="city-name" name="city-name" ng-model="city">
         </div>
         <div>
+            <label class="screen-reader-only" for="country-name">Select Country</label>
             <select ng-model="selectedItem" ng-options="option.Name for option in countries track by option.Code"></select>
         </div>
         <div>
-            <input type="submit" value="Get Weather">
+            <label class="screen-reader-only" for="submit">Get Weather</label>
+            <input id="submit" type="submit" value="Get Weather">
         </div>
     </form>
 </div>
@@ -20,7 +23,7 @@
 
 <div class="spinner" ng-show="loading">
     <img src="../img/spinner.gif" alt="">
-    </div>
+</div>
 
 <div ng-show="!loading && validEntry">
 
@@ -34,8 +37,7 @@
                 <p class="time">{{results.datetime}}</p>
                 <p class="weather-temp-current">{{results.tempCurrent}}
                     <span class="current-temps">
-                        <a ng-class="{'active-temp-unit': isDisabledF}" ng-click="isDisabledF || changeTemp('F')">F&#176;</a><span>|</span><a ng-class="{'active-temp-unit': isDisabledC}" ng-click="isDisabledC || changeTemp('C')">C&#176;</a>
-                    </span>
+                        <a ng-class="{'active-temp-unit': isDisabledF}" ng-click="isDisabledF || changeTemp('F')">F&#176;</a><span>|</span><a ng-class="{'active-temp-unit': isDisabledC}" ng-click="isDisabledC || changeTemp('C')">C&#176;</a></span>
                 </p>
                 <p class="desc capitalize">{{results.desc}}</p>
                 <p class="weather-temp-lowhigh">{{results.tempMax}}&#176; / {{results.tempMin}}&#176;</p>
