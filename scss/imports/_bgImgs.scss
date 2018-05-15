@@ -12,10 +12,7 @@ main {
     top: 0;
     left: 0; // height: 100%;
     width: 100%; // animation: bgImgFadeWhite 2s ease;
-    &.fadeBgImg {}
-    @media screen and (min-width: 768px) {
-        // background-position: center;
-    }
+
     &.no-img-icon {
         
         h1,
@@ -32,11 +29,11 @@ main {
     }
 
     &.no-img-icon::before {
-        animation: fadeOut $bgImageDuration ease;
+        // animation: bgImgFade 0.5s ease;
         background-color: white;
         background-size: cover;
         content: "";
-        opacity: 1;
+        opacity: 0;
         position: absolute;
         top: 0;
         right: 0;
@@ -278,6 +275,10 @@ main {
         overflow: hidden;
     }
 }
+
+// .fadeBgImg {
+//     animation: bgImgFade $bgImageDuration ease;
+// }
 
 .fadeBgImg-add {
     transition: color 2s ease;

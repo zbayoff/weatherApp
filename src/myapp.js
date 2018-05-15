@@ -781,7 +781,6 @@ app.component('weatherData', {
         let bgImageObjArray = [];
         let count = 0;
 
-
         // Make call to openweathermap API to GET weather data for specified city/country
         $scope.getWeather = function () {
             $scope.loading = true;
@@ -790,7 +789,6 @@ app.component('weatherData', {
             document.querySelector('main').classList.add(`no-img-icon`);
             $http({
                     method: 'GET',
-                    // url: `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=${$scope.city},${$scope.selectedItem.Code}&appid=9e408b682013db6d717c50482741631e`
                     url: `https://api.openweathermap.org/data/2.5/weather?q=${$scope.city},${$scope.selectedItem.Code}&appid=9e408b682013db6d717c50482741631e`
                 })
                 .then(function (response) {
@@ -843,6 +841,8 @@ app.component('weatherData', {
                         document.querySelector('main').className = "";
                         document.querySelector('main').classList.add(`img-icon-${$scope.bgImage}`);
                         document.querySelector('main').classList.add(`fadeBgImg`);
+
+                        
 
                         firstImgLoaded = true;
                         preloadOtherImages();

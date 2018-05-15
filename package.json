@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "build": "webpack --progress --watch",
-    "deploy": "NODE_ENV=production webpack -p --config webpack.production.config.js",
+    "deploy": "set NODE_ENV=production && webpack -p --config webpack.production.config.js",
     "boom!": "concurrently \"npm run start\" \"npm run build\" "
   },
   "repository": {
