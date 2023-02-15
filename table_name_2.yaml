@@ -1,0 +1,11 @@
+ID: ""
+base_table_name: table_name_2
+table_columns:
+- ID: ""
+  description: ""
+  name: field name 1 - table 2
+  type: ""
+- ID: ""
+  description: ""
+  name: field name 2 - table 2
+  type: ""
