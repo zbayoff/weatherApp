@@ -1,0 +1,28 @@
+base_table_name: table_name_1
+data:
+  cloud_locations:
+  - data_path: ""
+    datacenter_location: ""
+    start_date: ""
+  description: ""
+  display_name: ""
+  file_format: ""
+  owner: name of owner
+  owner_slack_channel: sweet slack channel name
+dataset_documentation: ""
+privacy_metadata:
+  contains_customer_data: false
+  contains_pii: true
+  contains_usage_data: false
+region_restrictions: []
+schema: '[IA FILL IN HERE]'
+table_columns:
+- description: ""
+  name: field name 1 - table 1
+  type: ""
+- description: ""
+  name: field name 2 - table 1
+  type: ""
+target_databases:
+- database: snowflake
+  external: '[IA FILL IN HERE]'
