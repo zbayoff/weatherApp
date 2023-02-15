@@ -1,0 +1,17 @@
+base_table_name: table_name_2
+privacy_metadata:
+  contains_customer_data: false
+  contains_pii: false
+  contains_usage_data: false
+region_restrictions: []
+schema: ""
+table_columns:
+- description: ""
+  name: field name 1 - table 2
+  type: ""
+- description: ""
+  name: field name 2 - table 2
+  type: ""
+target_databases:
+- database: ""
+  external: ""
