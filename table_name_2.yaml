@@ -1,0 +1,8 @@
+base_table_name: table_name_2
+table_columns:
+- description: ""
+  name: field name 1 - table 2
+  type: ""
+- description: ""
+  name: field name 2 - table 2
+  type: ""
