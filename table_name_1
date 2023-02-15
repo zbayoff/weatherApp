@@ -1,0 +1,13 @@
+filename: table_name_1
+ydd:
+  ID: ""
+  base_table_name: table_name_1
+  table_columns:
+  - ID: ""
+    description: ""
+    name: field name 1 - table 1
+    type: ""
+  - ID: ""
+    description: ""
+    name: field name 2 - table 1
+    type: ""
