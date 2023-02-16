@@ -1,0 +1,25 @@
+base_table_name: asdf
+data:
+  cloud_locations:
+  - data_path: ""
+    datacenter_location: ""
+    start_date: ""
+  description: ""
+  display_name: ""
+  file_format: ""
+  owner: owner name
+  owner_slack_channel: slack channel
+dataset_documentation: ""
+privacy_metadata:
+  contains_customer_data: true
+  contains_pii: true
+  contains_usage_data: true
+region_restrictions: []
+schema: '[IA FILL IN HERE]'
+table_columns:
+- description: ""
+  name: fas
+  type: ""
+target_databases:
+- database: snowflake
+  external: '[IA FILL IN HERE]'
