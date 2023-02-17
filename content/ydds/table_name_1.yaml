@@ -1,0 +1,25 @@
+basetablename: table_name_1
+schema: '[IA FILL IN HERE]'
+tablecolumns:
+- name: field name 1
+  type: ""
+  description: ""
+regionrestrictions: []
+targetdatabases:
+- database: snowflake
+  tabletype: '[IA FILL IN HERE]'
+privacymetadata:
+  containscustomerdata: true
+  containspii: true
+  containsusagedata: true
+datasetdocumentation: ""
+data:
+  cloudlocations:
+  - datacenterlocation: ""
+    datapath: ""
+    startdate: ""
+  fileformat: ""
+  owner: owner name
+  ownerslackchannel: slack channel
+  displayname: ""
+  description: ""
