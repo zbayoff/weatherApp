@@ -1,0 +1,25 @@
+basetablename: fda
+schema: '[IA FILL IN HERE]'
+tablecolumns:
+- name: asdf
+  type: ""
+  description: ""
+regionrestrictions: []
+targetdatabases:
+- database: snowflake
+  tabletype: '[IA FILL IN HERE]'
+privacymetadata:
+  containscustomerdata: false
+  containspii: false
+  containsusagedata: false
+datasetdocumentation: ""
+data:
+  cloudlocations:
+  - datacenterlocation: ""
+    datapath: ""
+    startdate: ""
+  fileformat: ""
+  owner: qweqwe
+  ownerslackchannel: ""
+  displayname: ""
+  description: ""
